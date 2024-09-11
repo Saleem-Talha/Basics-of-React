@@ -1,0 +1,67 @@
+<html>
+
+<body>
+    <div id="app"></div>
+
+    <!-- React and ReactDOM scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/jsx">
+            // Get the root element where React will render the app
+            const app = document.getElementById("app")
+
+            // Define the Header component
+            // Function component with destructuring props
+            function Header({ title }) {
+              // Return JSX with a ternary operator to handle default title
+              return <h1>{title ? title : "Default title"}</h1>
+            }
+
+            // Define the HomePage component
+            function HomePage() {
+              // Define an array of names
+              const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"]
+
+              // Define state for likes
+              // useState hook provides a state variable and a function to update it
+              const [likes, setLikes] = React.useState(0)
+
+              // Function to handle button click
+              function handleClick() {
+                // Update the state with the new value
+                setLikes(likes + 1)
+              }
+
+              // Return JSX for the component
+                return (
+                    <div>
+                    {/* Render the Header component with a title prop */}
+                    <Header title="Develop. Preview. Ship." />
+
+                    {/* Render a list of names */}
+                    <ul>
+                        {names.map((name) => (
+                        // Each item in the names array is rendered as a list item
+                        // The 'key' attribute is a unique identifier for each list item
+                        <li key={name}>{name}</li>
+                        ))}
+                    </ul>
+
+                    {/* Button to like, with a click event handler */}
+                    {/* The button displays the number of likes and updates the count when clicked */}
+                    <button onClick={handleClick}>Like ({likes})</button>
+                    </div>
+                )
+
+            }
+
+            // Create a root element for React and render the HomePage component
+            const root = ReactDOM.createRoot(app);
+            root.render(<HomePage />);
+    </script>
+    <a href="next.jsx">Go to Page Made using NextJS</a>
+</body>
+
+</html>
